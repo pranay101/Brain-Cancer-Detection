@@ -9,3 +9,4 @@ jupyterlab
 Flask
 Pillow
 torchvision 
+Flask-Cors

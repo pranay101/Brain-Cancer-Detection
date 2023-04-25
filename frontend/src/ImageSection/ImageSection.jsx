@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import "../App.css"
 import { PhotoIcon } from "@heroicons/react/24/outline"
@@ -31,7 +30,7 @@ const ImageSection = ({ imageSelected, setImageSelected, loading, setLoading, fo
         setLoading(true)
         console.log("called");
         // const url = `${Processor}/predict`
-        const url = `http://localhost:5000/predict`
+        const url = `${process.end.REACT_APP_PROCESSOR}/predict` || `http://localhost:5000/predict`;
         const formData = new FormData();
         const file = ImagePicker.current.files[0]
         formData.append('file', file);
