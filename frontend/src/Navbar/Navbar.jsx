@@ -7,7 +7,7 @@ const Navbar = ({setOpenAbout}) => {
         <div>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href='/' onClick={() => setOpenAbout(true)} >About</a></li>
+                <li><a onClick={() => setOpenAbout(true)} >About</a></li>
                 <li><a target='blank' href="https://github.com/pranay101/Brain-Cancer-Detection">Github</a></li>
                 <li><a target='blank' href="https://github.com/pranay101/Brain-Cancer-Detection">Research Paper</a></li>
             </ul>
