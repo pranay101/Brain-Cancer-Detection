@@ -57,6 +57,11 @@ def get_prediction(image_bytes):
    class_id = argmax(y_hat.data, dim=1)
    return str(int(class_id)), LABELS[int(class_id)]
 
+@app.route("/",methods=["POST","GET"])
+def home():
+    return "<h1>Hello this is Brain Cancer on MRI processor</h1>"
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     f = request.files["file"]
