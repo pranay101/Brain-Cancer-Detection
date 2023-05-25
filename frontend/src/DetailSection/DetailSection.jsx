@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import "../App.css"
 import Loader from '../Loader/Loader';
-const DetailSection = ({loading, setImageSelected,formReference,ImageSelected,setLoading}) => {
-    const [selectedAlgo, setSelectedAlgo] = useState("DENSENET")
+const DetailSection = ({loading, setImageSelected,formReference,ImageSelected,setLoading,selectedAlgo, setSelectedAlgo,setData}) => {
     return (
         <div className='DetailSection'>
             <h2>Brain Cancer Detection</h2>
@@ -39,7 +38,7 @@ const DetailSection = ({loading, setImageSelected,formReference,ImageSelected,se
                             </>)
                         }
                 </span>
-                <button onClick={() => {setImageSelected(null); setLoading(false)}} className='canclebutton' type='submit'>Cancle</button>
+                <button onClick={() => {setImageSelected(null); setLoading(false);setData(null)}} className='canclebutton' type='submit'>Cancle</button>
             </div>
 
         </div>

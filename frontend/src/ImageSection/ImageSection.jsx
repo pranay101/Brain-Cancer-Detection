@@ -6,10 +6,10 @@ import axios from 'axios';
 
 const Processor = process.env.REACT_APP_PROCESSOR
 
-const ImageSection = ({ imageSelected, setImageSelected, loading, setLoading, formReference }) => {
+const ImageSection = ({ imageSelected, setImageSelected, loading, setLoading, formReference,selectedAlgo,data,setData }) => {
 
     const ImagePicker = useRef(null)
-    const [data, setData] = useState(null)
+    
     const openImagePicker = () => {
         ImagePicker.current.click()
     }
@@ -28,9 +28,10 @@ const ImageSection = ({ imageSelected, setImageSelected, loading, setLoading, fo
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
-        console.log("called");
-        // const url = `${Processor}/predict`
-        const url = `${process.end.REACT_APP_PROCESSOR}/predict` || `http://localhost:5000/predict`;
+        let url = `${process.env.REACT_APP_PROCESSOR}/predictDenseNet` || `http://localhost:5000/predictDenseNet`;
+        if (selectedAlgo === "RESNET") {
+            url = `${process.env.REACT_APP_PROCESSOR}/predictResnet` || `http://localhost:5000/predictResnet`;
+        }
         const formData = new FormData();
         const file = ImagePicker.current.files[0]
         formData.append('file', file);
@@ -43,10 +44,13 @@ const ImageSection = ({ imageSelected, setImageSelected, loading, setLoading, fo
                 "withCredentials": true,
             },
         };
+        
 
         await axios.post(url, formData, config)
             .then((response) => {
-                setData(response.data);
+
+                const disease = response.data.result
+                setData(disease);
                 setLoading(false)
             });
 
@@ -69,7 +73,7 @@ const ImageSection = ({ imageSelected, setImageSelected, loading, setLoading, fo
                             {
                                 data ? (<div className='result'>
                                     <div>
-                                        <h4>Disease Detected:{data ? data.class_name : " "}</h4>
+                                        <h4>Disease Detected:{data ? data : " "}</h4>
                                     </div>
                                 </div>) : null
                             }

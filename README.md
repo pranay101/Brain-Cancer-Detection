@@ -1,160 +1,98 @@
-# neuralBlack
+# Brain Tumor Classification Web App
 
-**Note:** I have completely changed the POC for this project, and have not updated it over here since I'm publishing it as a paper.
+This is a web application for classifying brain tumor images using deep learning models. The application provides an interface to upload an MRI image and predicts the type of brain tumor present in the image. The two supported models are ResNet and DenseNet.
 
-neuralBlack is a complete brain tumor detection, classification, and diagnosis system with high accuracy (99.3%) that uses state of the art Deep Learning methods.
+## Features
 
-## ResNet50 Neural Network Architecture
+- Classification of brain tumor images using ResNet and DenseNet models.
+- User-friendly web interface for uploading images.
+- Real-time prediction of the tumor type.
+- Model training and evaluation on a labeled dataset.
+- Easy deployment on a Flask server.
 
-![NN image](https://www.researchgate.net/publication/331364877/figure/fig3/AS:741856270901252@1553883726825/Left-ResNet50-architecture-Blocks-with-dotted-line-represents-modules-that-might-be.png)
+## Prerequisites
 
-## Dataset
+- Python 3.7 or higher
+- TensorFlow 2.x
+- Flask
+- Numpy
+- PIL (Python Imaging Library)
 
-We have used [brain tumor dataset](https://figshare.com/articles/brain_tumor_dataset/1512427) posted by **Jun Cheng** on [figshare.com](figshare.com).
+## Getting Started
 
-This brain tumor dataset containing 3064 T1-weighted contrast-inhanced images from 233 patients with three kinds of brain tumor: meningioma (708 slices), glioma (1426 slices), and pituitary tumor (930 slices).
+1. Clone the repository:
 
-## Modules
+   ```
+   git clone https://github.com/pranay101/Brain-Cancer-Detection.git
+   cd brain-tumor-classification-web-app
+   ```
 
-* [brain_tumor_dataset_preparation.ipynb](brain_tumor_dataset_preparation.ipynb) - An IPython notebook that contains preparation and preprocessing of dataset for training, validation and testing.
+2. Install the required dependencies:
 
-* [torch_brain_tumor_classifier.ipynb](torch_brain_tumor_classifier.ipynb) - An IPython notebook that contains all the steps, processes and results of training, validating and testing our brain tumor classifier.
+   ```
+   pip install -r requirements.txt
+   ```
 
-* [test.py](test.py) - A python script which accepts path to an image as input, which then classifies the image into one of the three classes.
+3. Download the dataset (brain tumor images) and place it in the appropriate location:
+  - 'https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset'
+  - 'https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri'
 
-* [deploy.py](deploy.py) - A python script integrated with Flask server, that starts the Web Interface on local server where user can upload MRI image of brain and get classification results.
+4. Train the model (optional):
 
-**Note:** We have included few images for testing under [test_images](test_images) directory.
+   - If you want to train the model on your dataset, run the training script:
 
-## Running the classifier
+     ```
+     python train.py --dataset_path <path_to_dataset>
+     ```
+    - Download Model: 'https://drive.google.com/drive/folders/1Ae9-xkhf1QBXJz8m0OWYuzepXBiqbtjG?usp=sharing'
+   - Note: The training script is configured to train the ResNet model by default. You can modify the script to train the DenseNet model if desired.
 
-Download the classifier model '.pt' file from this [drive link](https://drive.google.com/file/d/1-rIrzzqpsSg80QG175hjEPv9ilnSHmqK/view?usp=sharing) and place it under a folder named 'models' in the same directory where the files of this repository are present.
+5. Start the Flask server:
 
-Before running the programs, kindly install the requirements as given in Requirements section of this README.
+   ```
+   python app.py
+   ```
+6. Open New Terminal cd in to Frontend and run ```npm start```
 
-* Use the [test.py](test.py) script for running the script in Terminal, Powershell or Command Prompt.
-  * `python test.py`
+7. Access the web application:
 
-* Use [deploy.py](deploy.py) script to access the classifier as an interactive web interface.
-  * `python deploy.py`
+   Open your web browser and navigate to `http://localhost:3000`
 
-## Screenshots (Results & Web Interface)
+## Usage
 
-### Web Interface
+1. Upload an MRI image:
 
-#### Home Page
+   - Click on the "Choose File" button and select an MRI image of a brain tumor.
 
-![index](results/web1.png)
+2. Click the "Predict" button:
 
-#### Classification Results via Web Interface
+   - The web application will process the uploaded image and display the predicted tumor type.
 
-![class 1](results/web2.png)
+3. Repeat the process:
 
-![class 2](results/web3.png)
-
-![class 3](results/web4.png)
-
-### Classifier Evaluation
-
-#### Loss Graph
-
-![Loss Metrics](results/loss_metrics.png)
-
-#### Accuracy Graph
-
-![Accuracy Metrics](results/accuracy_metrics.png)
-
-#### Confusion Matrix on Test set
-
-![Confusion Matrix](results/cm.png)
-
-## Requirements
-
-Python 3 is required.
-
-### Computational Specifications
-
-Project done using Google Colab with follwing specifications:
-
-* Ubuntu 18.04 64-bit OS
-* 12 GB DDR4 RAM
-* 16 GB NVidia Tesla P100 GPU
-* 40 GB of Non-Persistent Storage
-
-### Library Requirements
-
-We'll be using the following libraries to complete our classification problem:
-
-* **Numpy** - For linear algebra operations
-* **Torch** - Pytorch Deep Learning Framework
-* **OS** - To use Operating System methods
-* **Random** - To set random seed at specific places where random operations take place just so it happens the same way everytime it is executed
-* **Pandas** - To create DataFrame, CSV files, etc
-* **Time** - To perform date time operations
-* **Seaborn** - For sophisticated visualization
-* **Pickle** - To save and load binary files of our training data
-* **Scikit-Learn** - Machine learning framework. We have used this for evaluating our Classifier and for cross-validation split
-* **Matplotlib** - To visualize images, losses and accuracy
-* **Google Colab Drive** - To mount Google Drive so we can perform storage and loading operations using it (Only available on Google Colab)
-
-The above mentioned libraries comes pre-installed and pre-configured with Google Colab.
-
-Install the required libraries on your computer using the [pip](https://pip.pypa.io/en/stable/) package manager.
-
-For pip version 19.1 or above:
-
-~~~bash
-pip install -r requirements.txt --user
-~~~
-
-or
-
-~~~bash
-pip3 install -r requirements.txt --user
-~~~
-
-#### Pytorch
-
-Follow the steps for installation given in the official website of [Pytorch](https://pytorch.org).
-
-## About
-
-This project was done by Akshay Kumaar M. Paper is in progress. All the references papers have been included at the end of this repository's README.
-
-## References
-
-Thanks to [Vinoth Arjun](https://github.com/vinotharjun) for giving ideas for custom dataset class with different real-time augmentations.
+   - You can upload and classify multiple images using the web application.
 
 ## License
 
-Copyright 2020 Akshay Kumaar M
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Acknowledgments
 
-  http://www.apache.org/licenses/LICENSE-2.0
+- The dataset used in this project is sourced from [Brain Tumor Classification MRI](https://www.kaggle.com/navoneel/brain-mri-images-for-brain-tumor-detection) on Kaggle.
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Contributing
 
-### Research Papers
+Contributions are welcome! If you find any issues or want to enhance the functionality of the application, please submit a pull request.
 
-* [Multi-grade brain tumor classification using deep CNN with extensive data augmentation](https://www.sciencedirect.com/science/article/abs/pii/S1877750318307385)
+## Authors
 
-* [A Deep Learning-Based Framework for Automatic Brain Tumors Classification Using Transfer Learning](https://link.springer.com/article/10.1007/s00034-019-01246-3)
+- Pranay Prajapati -  Backend
+- Srishti Nimje - Frontend
 
-* [Deep Residual Learning for Image Recognition (ResNet)](https://arxiv.org/pdf/1512.03385.pdf)
+## Contact
 
-### Documentations
+For any inquiries or questions, please contact `pranayprajapati101@gmail.com`.
 
-* [Pytorch](https://pytorch.org/docs/stable/index.html)
+## Suggested Project Name
 
-## Future Scopes
-
-* Brain Tumor segmentation using GANs.
-* Brain Tumor detection using Object Detection for localization of tumor in a given MRI image of the brain.
-* Improve existing classification model and web interface
+"BrainTumorClassifierWeb"

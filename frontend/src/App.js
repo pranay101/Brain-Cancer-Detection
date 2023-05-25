@@ -9,7 +9,9 @@ function App() {
     const [imageSelected, setImageSelected] = useState(false);
     const [loading, setLoading] = useState(false)
     const [openAbout,setOpenAbout] = useState(false)
+    const [selectedAlgo, setSelectedAlgo] = useState("DENSENET")
     const formReference = useRef(null)
+    const [data, setData] = useState(null)
     return (
         <div className="App">
             {
@@ -29,8 +31,20 @@ function App() {
                     loading={loading} 
                     setLoading={setLoading} 
                     formReference = {formReference}  
+                    selectedAlgo={selectedAlgo}
+                    data={data}
+                    setData={setData}
                 />
-                <DetailSection loading={loading} setLoading={setLoading} setImageSelected={setImageSelected} formReference={formReference} ImageSelected={imageSelected}/>
+                <DetailSection 
+                    loading={loading} 
+                    setLoading={setLoading} 
+                    setImageSelected={setImageSelected} 
+                    formReference={formReference} 
+                    ImageSelected={imageSelected}
+                    selectedAlgo={selectedAlgo}
+                    setSelectedAlgo={setSelectedAlgo}
+                    setData={setData}
+                />
             </div>
         </div>
     );

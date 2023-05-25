@@ -80,4 +80,4 @@ def predict():
                 return jsonify({'class_id': class_id, 'class_name': class_name})
 
 if __name__ == '__main__':
-  app.run()
+  app.run(debug=True)
