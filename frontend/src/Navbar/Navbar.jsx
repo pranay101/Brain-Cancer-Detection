@@ -3,7 +3,7 @@ import "../App.css"
 const Navbar = ({setOpenAbout}) => {
   return (
     <div className='Navbar'>
-        <h4>Nimje Cancer and Research Center</h4>
+        <h4>Cancer and Research Center</h4>
         <div>
             <ul>
                 <li><a href="/">Home</a></li>
